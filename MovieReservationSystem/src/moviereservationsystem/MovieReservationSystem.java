@@ -19,12 +19,12 @@ public class MovieReservationSystem extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Welcome Hello World'");
+        btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Welcome Hello World!");
+                System.out.println("Hello World!");
             }
         });
         
@@ -33,7 +33,7 @@ public class MovieReservationSystem extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Welcome Hello World!");
+        primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
