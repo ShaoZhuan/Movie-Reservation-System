@@ -31,7 +31,7 @@ public class MovieReservationSystem extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(btn);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 1150, 646.88);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
