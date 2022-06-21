@@ -12,7 +12,7 @@ import java.util.List;
  * @author hng
  */
 public class Movie {
-        
+    
     private String name;
     private String description;
     private int duration;    

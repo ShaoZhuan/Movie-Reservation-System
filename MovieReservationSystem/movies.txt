@@ -1,1 +1,1 @@
-Movie Name,Start Time,duration,movie information,image url
+Movie Name,19,90,movie information,image url

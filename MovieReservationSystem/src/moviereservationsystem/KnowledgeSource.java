@@ -4,6 +4,8 @@
  */
 package moviereservationsystem;
 
+import java.util.List;
+
 /**
  *
  * @author hng
@@ -11,7 +13,7 @@ package moviereservationsystem;
 public interface KnowledgeSource {
     
     // generate movie and return movie object
-    public Movie MovieInformation();
+    public List<Movie> MovieInformation();
     
     //provides ticket reservation services to anonymous customers. 
     public void reserveTicketAnonymous();
@@ -20,7 +22,7 @@ public interface KnowledgeSource {
     public void reserveTicketMember();
     
     //show movie guide
-    public void showMovie();
+    public void showMovie(List<Movie> movieList);
     
     //close reservation
     public void closeReserve();

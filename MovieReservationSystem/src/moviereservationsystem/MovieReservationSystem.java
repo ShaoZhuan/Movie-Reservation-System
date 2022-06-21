@@ -23,8 +23,7 @@ import javafx.stage.Stage;
 public class MovieReservationSystem extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        loadData();
+    public void start(Stage primaryStage) {        
         Button btn = new Button();
         Text titleText = new Text();        
         btn.setText("Say 'Hello World'");
@@ -43,27 +42,13 @@ public class MovieReservationSystem extends Application {
         primaryStage.show();
     }
     
-    public static void loadData(){
-        File file = new File("movies.txt");
-        try {
-            Scanner sc = new Scanner(file);
-            while(sc.hasNextLine()){
-                String[] str = sc.nextLine().split(",");                
-                Movie movie = new Movie(str[0],str[3],Integer.parseInt(str[2]),Integer.parseInt(str[1]),str[4]);
-                System.out.println(movie.toString());
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MovieReservationSystem.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
+    
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        loadData();
-//        launch(args);
+    public static void main(String[] args) {        
+        launch(args);
     }
     
 }
