@@ -4,6 +4,11 @@
  */
 package moviereservationsystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -19,11 +24,12 @@ public class MovieReservationSystem extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        loadData();
         Button btn = new Button();
         Text titleText = new Text();        
         btn.setText("Say 'Hello World'");
         btn.setOnAction((ActionEvent event) -> {
-            titleText.setText("Text is Changed");            
+            System.out.println("");       
         });
         
         StackPane root = new StackPane();
@@ -36,12 +42,28 @@ public class MovieReservationSystem extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
+    public static void loadData(){
+        File file = new File("movies.txt");
+        try {
+            Scanner sc = new Scanner(file);
+            while(sc.hasNextLine()){
+                String[] str = sc.nextLine().split(",");                
+                Movie movie = new Movie(str[0],str[3],Integer.parseInt(str[2]),Integer.parseInt(str[1]),str[4]);
+                System.out.println(movie.toString());
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MovieReservationSystem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        loadData();
+//        launch(args);
     }
     
 }
