@@ -6,6 +6,7 @@ package moviereservationsystem;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -30,11 +31,19 @@ public class Action implements KnowledgeSource {
         try {
             Scanner sc = new Scanner(file);
             while(sc.hasNextLine()){
-                String[] str = sc.nextLine().split(",");                
-                Movie movie = new Movie(str[0],str[3],Integer.parseInt(str[2]),Integer.parseInt(str[1]),str[4]);
+                String[] str = sc.nextLine().split(",");      
+                String name = str[0];
+                String[] showTime = str[1].split("\\|");               
+                int duration = Integer.parseInt(str[2]);
+                String description = str[3];
+                String url = str[4];
+                
+                // name, description, duration, showtime, imageurl
+                Movie movie = new Movie(name, description, duration, Arrays.asList(showTime),url);
                 // after done creating movie blackboard update and display the movie
-                movieList.add(movie);
+                movieList.add(movie);               
             }
+            sc.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MovieReservationSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,23 +51,18 @@ public class Action implements KnowledgeSource {
     }
 
     @Override
-    public void reserveTicketAnonymous() {
+    public void reserveTicket() {
         
     }
 
-    @Override
-    public void reserveTicketMember() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public void showMovie(List<Movie> movieList) {
         // print the movie list and time table
         for (Movie mv: movieList) {
             System.out.println(mv.toString());
-        }
-
-        
+        }        
                 
         System.out.println("\nTime table of all movie show times: ");
         // row is time, column is movielist
@@ -70,8 +74,11 @@ public class Action implements KnowledgeSource {
             System.out.printf("%-7.2f| ",time);
             if(!movieList.isEmpty()){
                 for (Movie list: movieList) {
-                    if(list.getStartTime()==(int)time)
-                        System.out.printf("%-10s ",list.getName());
+                    for (ShowTime showtime: list.getShowTime()) {
+                        if(showtime.getShowTime()==(int)time)
+                            System.out.printf("%-10s ",list.getName());
+                        
+                    }
                 }
             }
             System.out.println();
@@ -88,5 +95,6 @@ public class Action implements KnowledgeSource {
     @Override
     public void closeMovie() {
         System.out.println("All movies have finished show. Please come at next day.");
+        System.exit(0);
     }
 }

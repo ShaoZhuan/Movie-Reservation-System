@@ -16,15 +16,19 @@ public class Timer implements Runnable{
     
     private static double time;
     public static boolean updated;
-    
+    public static boolean reach=false;
     public Timer(){
-        time=8.00;
+        time=7.00;
         updated = true;
     }
     
     public void increment(){
         time+=1;
         updated = true;
+    }
+    
+    public boolean timeReach(){
+        return reach;
     }
     
     
@@ -45,6 +49,7 @@ public class Timer implements Runnable{
             }
             increment();
         }
+        reach=true;
     }
     
 }

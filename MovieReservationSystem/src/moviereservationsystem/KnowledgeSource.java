@@ -16,10 +16,7 @@ public interface KnowledgeSource {
     public List<Movie> MovieInformation();
     
     //provides ticket reservation services to anonymous customers. 
-    public void reserveTicketAnonymous();
-    
-    //provide member reservation
-    public void reserveTicketMember();
+    public void reserveTicket();
     
     //show movie guide
     public void showMovie(List<Movie> movieList);

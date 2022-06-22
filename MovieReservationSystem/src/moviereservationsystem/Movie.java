@@ -16,15 +16,19 @@ public class Movie {
     private String name;
     private String description;
     private int duration;    
-    private int startTime;
+    private List<ShowTime> showTime;
     private String imageURL;
+    
 
-    public Movie(String name, String description, int duration, int startTime, String imageURL) {
+    public Movie(String name, String description, int duration, List<String> startTime, String imageURL) {        
         this.name = name;
         this.description = description;
         this.duration = duration;
-        this.startTime = startTime;
-        this.imageURL = imageURL;
+        showTime = new ArrayList<>();
+        for (int i = 0; i < startTime.size(); i++) {            
+            showTime.add(new ShowTime(Integer.parseInt(startTime.get(i))));
+        }
+        this.imageURL = imageURL;        
     }
 
     public int getDuration() {
@@ -34,13 +38,13 @@ public class Movie {
     public void setDuration(int duration) {
         this.duration = duration;
     }
-
-    public int getStartTime() {
-        return startTime;
+    
+    public void setShowTime(List<ShowTime> showTime){
+        this.showTime = showTime;
     }
 
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
+    public List<ShowTime> getShowTime() {
+        return showTime;
     }
 
     public String getImageURL() {
@@ -51,7 +55,14 @@ public class Movie {
         this.imageURL = imageURL;
     }
     
-    
+    public String displayShowTime(){
+        String str="[";
+        for (ShowTime showTime : this.showTime) {
+            str += showTime.getShowTime() + ",";
+        }
+        str+="]";
+        return str;
+    }
 
     public String getName() {
         return name;
@@ -70,11 +81,12 @@ public class Movie {
     }
 
     
+    @Override
     public String toString(){
         String str = "Movie: "+this.name + "\n" +
                 "Movie Description: "+this.description+ "\n" +
                 "Movie Duration: "+this.duration+ "\n" +
-                "Movie time: "+this.startTime+ "\n" +
+                "Movie time: "+this.displayShowTime()+ "\n" +
                 "Movie image: "+this.imageURL+ "\n";
         return str;
     }

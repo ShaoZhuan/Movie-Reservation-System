@@ -18,13 +18,12 @@ public class Controller implements Runnable{
 
     private Action action;
     private List<Movie> movieList;
-    private List<Movie> removeList;
     private static Blackboard bb;
     private Timer timer;
     private boolean update=true;
     
     public Controller(List<Movie> movieList){
-        removeList = new ArrayList<>();
+        
         movieList = new ArrayList<>();
         action = new Action(movieList);
         bb = new Blackboard(action);
@@ -33,10 +32,14 @@ public class Controller implements Runnable{
     
     @Override
     public void run() {
+        List<ShowTime> removeList;
+        List<Movie> removeMVlist;
         // use thread monitoring blackboard state
         movieList = action.MovieInformation();                
         // check the closing time        
-        while(timer.getTime()<22.00){                 
+        while(!timer.timeReach()){   
+            removeList= new ArrayList<>();
+            removeMVlist= new ArrayList<>();
             double time = timer.getTime();
             // sleep for 1 seconds and wake up to check loop
             try {
@@ -45,22 +48,24 @@ public class Controller implements Runnable{
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
             //check for close reservation
-            for (Movie movie : movieList) {
-                if((movie.getStartTime()-time)<=1.0 && (movie.getStartTime()-time)>=0){
-                    //disable button
-                    removeList.add(movie);
-                    update= true;
+            for (Movie movie : movieList) {                
+                for (ShowTime showTime : movie.getShowTime()) {
+                    if ((showTime.getShowTime() - time) <= 1.0 && (showTime.getShowTime() - time) >= 0) {
+                        //disable button
+                        removeList.add(showTime);
+                        update= true;
+                    }
                 }
-            }            
+                if(!removeList.isEmpty()){                
+                    movie.getShowTime().removeAll(removeList);  
+                    if(movie.getShowTime().isEmpty())
+                        removeMVlist.add(movie);
+                }
+            } 
             if(!removeList.isEmpty()){                
-                if(movieList.size()==1){
-                    movieList.clear();
-                }
-                else{
-                    movieList.removeAll(removeList);  
-                }
+                movieList.removeAll(removeMVlist);  
             }
-            if(timer.getTime()!=time || update){
+            if(update){
                 bb.update(movieList);
                 update=false;
             }
