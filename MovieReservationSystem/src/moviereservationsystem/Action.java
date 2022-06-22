@@ -54,11 +54,11 @@ public class Action implements KnowledgeSource {
     @Override
     public void showMovie(List<Movie> movieList) {
         // print the movie list and time table
-        if(!movieList.isEmpty()){
-            for (Movie mv: movieList) {
-                System.out.println(mv.toString());
-            }
+        for (Movie mv: movieList) {
+            System.out.println(mv.toString());
         }
+
+        
                 
         System.out.println("\nTime table of all movie show times: ");
         // row is time, column is movielist
@@ -66,16 +66,16 @@ public class Action implements KnowledgeSource {
         double time = 8.00;
         System.out.println("Time:  | Movie");
         for (int i = 0; i < 15; i++) {    
+            //print time
             System.out.printf("%-7.2f| ",time);
             if(!movieList.isEmpty()){
                 for (Movie list: movieList) {
                     if(list.getStartTime()==(int)time)
                         System.out.printf("%-10s ",list.getName());
                 }
-                //print time
-                System.out.println();
-                time+=1;                            
             }
+            System.out.println();
+            time+=1;                            
         }
         System.out.println();
     }
