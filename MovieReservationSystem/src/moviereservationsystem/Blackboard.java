@@ -37,10 +37,15 @@ public class Blackboard {
             newlist.add(temp);
             if(oriList.isEmpty())
                 break;
-        }                
+        }
+        if(list.isEmpty()){
+            action.showMovie(list);
+        }
+        else{
+            //trigger showMovie method
+            action.showMovie(newlist);            
+        }
         
-        //trigger showMovie method
-        action.showMovie(newlist);
         
         
     }

@@ -36,8 +36,8 @@ public class Controller implements Runnable{
         // use thread monitoring blackboard state
         movieList = action.MovieInformation();                
         // check the closing time        
-        while(timer.getTime()<22.00){     
-            double time = timer.getTime();            
+        while(timer.getTime()<22.00){                 
+            double time = timer.getTime();
             // sleep for 1 seconds and wake up to check loop
             try {
                 Thread.sleep(1000);
@@ -51,13 +51,14 @@ public class Controller implements Runnable{
                     removeList.add(movie);
                     update= true;
                 }
-            }
-            if(!removeList.isEmpty()){
+            }            
+            if(!removeList.isEmpty()){                
                 if(movieList.size()==1){
                     movieList.clear();
                 }
-                else
+                else{
                     movieList.removeAll(removeList);  
+                }
             }
             if(timer.getTime()!=time || update){
                 bb.update(movieList);
