@@ -27,12 +27,13 @@ import javax.swing.JScrollPane;
  *
  * @author hng
  */
-public class Blackboard extends JFrame{
+public class Blackboard{
     
     private Action action;    
     private static JFrame f;
     JPanel mainPanel;
-
+    String time="7.00";
+    JLabel timeComponent;
 
     public Blackboard(Action action, List<Movie> movieList) throws SQLException{   
         this.action = action; 
@@ -41,12 +42,14 @@ public class Blackboard extends JFrame{
         mainPanel.setLayout(new GridLayout(0, 1, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 20));
         action.loadData(movieList);
-        displayTime(7.00);
     }
     
     //special method for supporting the updating process carried out by knowledge sources
     public void update(List<Movie> list,List<ShowtimeButton> buttons) throws MalformedURLException, IOException, SQLException{
         // sort the list according to duration
+        
+        timeComponent= new JLabel("Time "+time);
+        mainPanel.add(timeComponent);
         for(Movie movie: list){
             URL url = new URL(movie.getImageURL());
             Image image = ImageIO.read(url);
@@ -88,7 +91,7 @@ public class Blackboard extends JFrame{
         
     }
     
-    public void displayTime(double time){
-        
+    public void setTime(double time){
+        timeComponent.setText("Time: "+Double.toString(time));
     }
 }

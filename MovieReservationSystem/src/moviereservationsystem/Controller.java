@@ -47,7 +47,7 @@ public class Controller implements Runnable{
             // check the closing time
             while(timer.getTime()<22.00){
                 double time = timer.getTime();
-                bb.displayTime(time);
+                bb.setTime(time);
                 // sleep for 1 seconds and wake up to check loop
                 try {
                     Thread.sleep(1000);

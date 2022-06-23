@@ -69,14 +69,10 @@ public class Action implements KnowledgeSource {
     }
 
     @Override
-    public void reserveTicketAnonymous() {
+    public void reserveTicket() {
         
     }
 
-    @Override
-    public void reserveTicketMember() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
   
 
     @Override
