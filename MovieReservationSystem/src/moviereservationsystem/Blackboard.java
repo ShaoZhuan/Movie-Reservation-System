@@ -8,6 +8,7 @@ import GUI.ShowtimeButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.IOException;
@@ -22,12 +23,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 /**
  *
  * @author hng
  */
-public class Blackboard{
+public class Blackboard extends JFrame{
     
     private Action action;    
     private static JFrame f;
@@ -48,13 +51,15 @@ public class Blackboard{
     public void update(List<Movie> list,List<ShowtimeButton> buttons) throws MalformedURLException, IOException, SQLException{
         // sort the list according to duration
         
-        timeComponent= new JLabel("Time "+time);
+        timeComponent= new JLabel("Time "+time, SwingConstants.CENTER);
+        timeComponent.setFont(new Font("Serif", Font.BOLD, 20));
         mainPanel.add(timeComponent);
+        
         for(Movie movie: list){
+            JLabel title = new JLabel(movie.getName());
             URL url = new URL(movie.getImageURL());
             Image image = ImageIO.read(url);
             JLabel img = new JLabel();
-            JLabel title = new JLabel(movie.getName());
             img.setPreferredSize(new Dimension(300, 300));
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(200, 300, Image.SCALE_DEFAULT));
             img.setIcon(imageIcon);
@@ -71,7 +76,7 @@ public class Blackboard{
             rightPanel.setLayout(new GridLayout(0, 5, 10, 10));
             leftPanel.add(img);
             leftPanel.add(title);             
-            action.addButton(rightPanel, movie.getId(),buttons);
+            action.addButton(rightPanel, movie.getId(),buttons);            
             panel.add(leftPanel);
             panel.add(rightPanel);
             mainPanel.add(panel);

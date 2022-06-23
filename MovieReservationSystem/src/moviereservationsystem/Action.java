@@ -6,6 +6,8 @@ package moviereservationsystem;
 
 import GUI.ShowtimeButton;
 import database.DBConnection;
+import java.io.IOException;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,18 +16,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
+
 /**
  *
  * @author hng
  */
 public class Action implements KnowledgeSource {
     
-    private List<Movie> movieList;
+    private List<Movie> movieList;    
     DBConnection db;
-    
-    public Action(List<Movie> movieList){        
+    MovieBox mb;
+    public Action(List<Movie> movieList){
+        
         try {
-            this.db = new DBConnection();
+            this.db = new DBConnection();            
         } catch (SQLException ex) {
             Logger.getLogger(Action.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +57,16 @@ public class Action implements KnowledgeSource {
         ResultSet showtimes = db.retrieve("SELECT * FROM showtime WHERE movie_id=" + _id);            
         while (showtimes.next()) {
             ShowtimeButton button = new ShowtimeButton(showtimes.getInt(1), showtimes.getInt(2), showtimes.getString(3), showtimes.getInt(4));
-            buttons.add(button);
+            button.addActionListener(e-> {
+                // start the reservation things
+                mb = new MovieBox(MovieInformation(button.getMovieId()),button,this);
+                try {
+                    mb.display();
+                } catch (IOException ex) {
+                    Logger.getLogger(Action.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            buttons.add(button);            
             panel.add(button);
         }
         panel.revalidate();
@@ -62,27 +75,47 @@ public class Action implements KnowledgeSource {
 
     
     @Override
-    public Movie MovieInformation() {
+    public Movie MovieInformation(int id) {
         // return movie information
+        for (Movie movie:movieList) {
+            if(movie.getId()==id){
+                return movie;
+            }
+        }
         return null;
 
     }
 
     @Override
-    public void reserveTicket() {
-        
+    public void reserveTicket(ShowtimeButton button) {
+        if(button.isEnabled()){
+            if(button.isFull()){
+               //popout error message 
+               PopupWindow error = new PopupWindow("Sorry the capacity is full. Please choose for another slot");           
+            }
+            else{
+                button.reserve();
+                // popout reserve successfully
+                PopupWindow success = new PopupWindow("Reserve Successfully!");                 
+            }            
+        }
+        else{
+            PopupWindow expired = new PopupWindow("The time for reservation is passed. Please try next slot.");
+            mb.setVisible(false);
+        }
     }
 
   
 
     @Override
-    public void closeReserve() {
+    public void closeReserve(ShowtimeButton button) {
         // disable button or remove the button from the blackboard
+        button.setDisabled();    
     }
 
     @Override
     public void closeMovie() {
-        System.out.println("All movies have finished show. Please come at next day.");
-        System.exit(0);
+        PopupWindow endWindow = new PopupWindow("All movies have finished show. Please come at next day.");
+        endWindow.end = true;
     }
 }

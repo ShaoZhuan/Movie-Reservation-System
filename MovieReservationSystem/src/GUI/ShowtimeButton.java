@@ -73,6 +73,14 @@ public class ShowtimeButton extends JButton {
 
     public void setShowtime(String showtime) {
         this.showtime = showtime;
+    }        
+    
+    public boolean isFull(){
+        return available==0;
+    }
+    
+    public void reserve(){
+        available--;
     }
 
 }

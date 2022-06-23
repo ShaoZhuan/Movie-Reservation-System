@@ -57,7 +57,7 @@ public class Controller implements Runnable{
                 //compare button with time
                 for (ShowtimeButton sb : buttons){
                     if(Double.parseDouble(sb.getShowtime())-time<=1.0){
-                        sb.setDisabled();                        
+                        action.closeReserve(sb);                                            
                     }
                 }                
             }

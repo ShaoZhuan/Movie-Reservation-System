@@ -34,8 +34,7 @@ public class Timer implements Runnable{
     
     public void run(){
         // count time until cinema closed
-        while(time != 22.00){
-            System.out.println("Current Time: "+time);
+        while(time != 23.00){
             try {
                 updated=false;
                 // sleep for around 10s then wake up update time
