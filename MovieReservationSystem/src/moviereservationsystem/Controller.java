@@ -60,7 +60,7 @@ public class Controller implements Runnable{
                     movieList.removeAll(removeList);  
                 }
             }
-            if(timer.getTime()!=time || update){
+            if( update){
                 bb.update(movieList);
                 update=false;
             }

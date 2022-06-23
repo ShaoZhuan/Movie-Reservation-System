@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/GUI/GUI.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/MainGUI.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/GUI/ShowtimeButton.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Blackboard.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Action.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/GUI/testStatic.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Controller.java</file>
+            <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/movies.sql</file>
+        </group>
     </open-files>
 </project-private>

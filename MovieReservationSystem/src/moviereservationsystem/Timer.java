@@ -39,7 +39,7 @@ public class Timer implements Runnable{
             try {
                 updated=false;
                 // sleep for around 10s then wake up update time
-                Thread.sleep(10000);
+                Thread.sleep(2000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Timer.class.getName()).log(Level.SEVERE, null, ex);
             }
