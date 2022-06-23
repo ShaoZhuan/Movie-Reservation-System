@@ -40,32 +40,32 @@ INSERT INTO `movie`.`movie` (title, info, duration, image)  VALUES ('Movie E', '
 INSERT INTO `movie`.`movie` (title, info, duration, image)  VALUES ('Movie F', 'MOvie F Info', 90, 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/97/Scarlet_Witch.jpg/revision/latest?cb=20220501012641');
 
 
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '9:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '10:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '17:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '20:00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '9.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '10.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '17.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '20.00', 50 );
 
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '9:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '11:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '14:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '15:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '16:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '19:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '20:00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '9.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '11.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '14.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '15.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '16.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '19.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '20.00', 50 );
 
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '9:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '11:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '16:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '18:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '19:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '20:00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '9.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '11.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '16.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '18.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '19.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (3, '20.00', 50 );
 
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '9:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '10:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '11:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '18:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '19:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '20:00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '9.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '10.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '11.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '18.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '19.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (4, '20.00', 50 );
 
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (5, '10:00', 50 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (5, '16:00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (5, '10.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (5, '16.00', 50 );
