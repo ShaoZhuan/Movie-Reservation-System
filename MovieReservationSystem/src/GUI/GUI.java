@@ -21,6 +21,7 @@ import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import moviereservationsystem.Controller;
 
 public class GUI extends JFrame {
 
@@ -107,6 +108,12 @@ public class GUI extends JFrame {
 
             public void run() {
                 try {
+                    Controller controller = new Controller(movieList);
+                    moviereservationsystem.Timer timer = new moviereservationsystem.Timer();
+                    Thread t1 = new Thread(controller);
+                    t1.start();
+                    Thread t2 = new Thread(timer);
+                    t2.start();
                     new GUI();
 //                    buttons.get(4).setDisabled();
                 } catch (IOException ex) {
