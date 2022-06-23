@@ -27,16 +27,25 @@ import javax.swing.JScrollPane;
  *
  * @author hng
  */
-public class Blackboard {
+public class Blackboard extends JFrame{
     
     private Action action;    
-    
-    public Blackboard(Action action){   
-        this.action = action;          
+    private static JFrame f;
+    JPanel mainPanel;
+
+
+    public Blackboard(Action action, List<Movie> movieList) throws SQLException{   
+        this.action = action; 
+        f = new JFrame("Movie Reservation System");
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(0, 1, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 20));
+        action.loadData(movieList);
+        displayTime(7.00);
     }
     
     //special method for supporting the updating process carried out by knowledge sources
-    public void update(List<Movie> list,JPanel mainPanel, List<ShowtimeButton> buttons,JFrame f) throws MalformedURLException, IOException, SQLException{
+    public void update(List<Movie> list,List<ShowtimeButton> buttons) throws MalformedURLException, IOException, SQLException{
         // sort the list according to duration
         for(Movie movie: list){
             URL url = new URL(movie.getImageURL());
@@ -79,7 +88,7 @@ public class Blackboard {
         
     }
     
-    public void displayTime(double time,JPanel mainpanel){
+    public void displayTime(double time){
         
     }
 }
