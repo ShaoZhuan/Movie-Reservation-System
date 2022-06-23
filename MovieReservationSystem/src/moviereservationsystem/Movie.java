@@ -13,17 +13,17 @@ import java.util.List;
  */
 public class Movie {
     
+    private int id;
     private String name;
     private String description;
     private int duration;    
-    private int startTime;
     private String imageURL;
 
-    public Movie(String name, String description, int duration, int startTime, String imageURL) {
+    public Movie(int id, String name, String description, int duration, String imageURL) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
-        this.startTime = startTime;
         this.imageURL = imageURL;
     }
 
@@ -31,16 +31,12 @@ public class Movie {
         return duration;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public int getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(int startTime) {
-        this.startTime = startTime;
     }
 
     public String getImageURL() {
@@ -74,7 +70,6 @@ public class Movie {
         String str = "Movie: "+this.name + "\n" +
                 "Movie Description: "+this.description+ "\n" +
                 "Movie Duration: "+this.duration+ "\n" +
-                "Movie time: "+this.startTime+ "\n" +
                 "Movie image: "+this.imageURL+ "\n";
         return str;
     }

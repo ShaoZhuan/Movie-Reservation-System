@@ -18,7 +18,7 @@ public class Timer implements Runnable{
     public static boolean updated;
     
     public Timer(){
-        time=8.00;
+        time=7.00;
         updated = true;
     }
     
@@ -39,7 +39,7 @@ public class Timer implements Runnable{
             try {
                 updated=false;
                 // sleep for around 10s then wake up update time
-                Thread.sleep(2000);
+                Thread.sleep(10000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Timer.class.getName()).log(Level.SEVERE, null, ex);
             }

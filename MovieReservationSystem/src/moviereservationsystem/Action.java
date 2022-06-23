@@ -4,12 +4,15 @@
  */
 package moviereservationsystem;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import GUI.ShowtimeButton;
+import database.DBConnection;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,27 +21,51 @@ import java.util.logging.Logger;
 public class Action implements KnowledgeSource {
     
     private List<Movie> movieList;
+    DBConnection db;
     
     public Action(List<Movie> movieList){        
+        try {
+            this.db = new DBConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(Action.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.movieList = movieList;
+    }
+    
+    public void loadData(List<Movie> movieList) throws SQLException{
+        try (ResultSet movies = db.retrieve("SELECT * FROM movie")) {
+            while (movies.next()) {
+                //assign the data into list
+                int id  = movies.getInt("_id");
+                String title = movies.getString(2);
+                String info = movies.getString(3);
+                int duration  = movies.getInt("duration");
+                String url= movies.getString(5);
+                movieList.add(new Movie(id,title,info,duration,url));
+            }
+        }
+        
+        
+        
+    }
+    
+    public void addButton(JPanel panel, int _id, List<ShowtimeButton> buttons) throws SQLException {
+        ResultSet showtimes = db.retrieve("SELECT * FROM showtime WHERE movie_id=" + _id);            
+        while (showtimes.next()) {
+            ShowtimeButton button = new ShowtimeButton(showtimes.getInt(1), showtimes.getInt(2), showtimes.getString(3), showtimes.getInt(4));
+            buttons.add(button);
+            panel.add(button);
+        }
+        panel.revalidate();
+        panel.repaint();
     }
 
     
     @Override
-    public List<Movie> MovieInformation() {
-        File file = new File("movies.txt");
-        try {
-            Scanner sc = new Scanner(file);
-            while(sc.hasNextLine()){
-                String[] str = sc.nextLine().split(",");                
-                Movie movie = new Movie(str[0],str[3],Integer.parseInt(str[2]),Integer.parseInt(str[1]),str[4]);
-                // after done creating movie blackboard update and display the movie
-                movieList.add(movie);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MovieReservationSystem.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return movieList;
+    public Movie MovieInformation() {
+        // return movie information
+        return null;
+
     }
 
     @Override
@@ -50,35 +77,7 @@ public class Action implements KnowledgeSource {
     public void reserveTicketMember() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public void showMovie(List<Movie> movieList) {
-        // print the movie list and time table
-        for (Movie mv: movieList) {
-            System.out.println(mv.toString());
-        }
-
-        
-                
-        System.out.println("\nTime table of all movie show times: ");
-        // row is time, column is movielist
-        //time only from 8am to 10pm with every half hour of display
-        double time = 8.00;
-        System.out.println("Time:  | Movie");
-        for (int i = 0; i < 15; i++) {    
-            //print time
-            System.out.printf("%-7.2f| ",time);
-            if(!movieList.isEmpty()){
-                for (Movie list: movieList) {
-                    if(list.getStartTime()==(int)time)
-                        System.out.printf("%-10s ",list.getName());
-                }
-            }
-            System.out.println();
-            time+=1;                            
-        }
-        System.out.println();
-    }
+  
 
     @Override
     public void closeReserve() {
@@ -88,5 +87,6 @@ public class Action implements KnowledgeSource {
     @Override
     public void closeMovie() {
         System.out.println("All movies have finished show. Please come at next day.");
+        System.exit(0);
     }
 }

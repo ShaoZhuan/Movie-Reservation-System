@@ -24,27 +24,31 @@ import javax.swing.JPanel;
 public class Controller implements Runnable{
 
     private Action action;
-    private List<Movie> movieList;
-    private List<Movie> removeList;
+    private static List<Movie> movieList;    
     private static Blackboard bb;
-    private Timer timer;
-    private boolean update=true;
-    private static JFrame f = new JFrame("Movie Reservation System");
+    private Timer timer;    
     private JPanel MoviePanel = new JPanel();
-    static ArrayList<ShowtimeButton> buttons = new ArrayList<>();
+    private List<ShowtimeButton> buttons;
     JPanel mainPanel;
     
-    public Controller(List<Movie> movieList){
-        removeList = new ArrayList<>();
+    private static JFrame f;
+    public Controller(){
+        this.buttons = new ArrayList<>();        
         movieList = new ArrayList<>();
         action = new Action(movieList);
         bb = new Blackboard(action);
         timer = new Timer();
     }
+    
     public void GUI() throws IOException, SQLException {
+        f = new JFrame("Movie Reservation System");
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(0, 1, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 20));
+        // retrive data from database
+        action.loadData(movieList);  
+        bb.displayTime(7.00,mainPanel);
+        bb.update(movieList,mainPanel,buttons,f);
     }
     
     @Override
@@ -52,41 +56,26 @@ public class Controller implements Runnable{
         try {
             GUI();
             // use thread monitoring blackboard state
-            movieList = action.MovieInformation();
             // check the closing time
             while(timer.getTime()<22.00){
                 double time = timer.getTime();
+                bb.displayTime(time,mainPanel);
                 // sleep for 1 seconds and wake up to check loop
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                //compare with button time
-                for (Movie movie : movieList) {
-                    if((movie.getStartTime()-time)<=1.0 && (movie.getStartTime()-time)>=0){
-                        //disable button
-                        removeList.add(movie);
-                        update= true;
+                //compare button with time
+                for (ShowtimeButton sb : buttons){
+                    if(Double.parseDouble(sb.getShowtime())-time<=1.0){
+                        sb.setDisabled();                        
                     }
-                }
-                if(!removeList.isEmpty()){
-                    if(movieList.size()==1){  
-                        movieList.clear();
-                    }
-                    else{
-                        movieList.removeAll(removeList);
-                    }
-                }
-                if( update){
-                    bb.update(movieList);
-                    update=false;
-                }
-                
+                }                
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            action.closeMovie();
+            
+        } catch (IOException | SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

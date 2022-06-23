@@ -16,10 +16,8 @@ public class ShowtimeButton extends JButton {
     private int showtimeId, movieId, capacity, available;
     private String showtime;
 
-    private static ArrayList<ShowtimeButton> buttons;
 
     public ShowtimeButton() {
-        buttons = new ArrayList<>();
     }
 
     public ShowtimeButton(int showtimeId, int movieId, String showtime, int capacity) {
@@ -31,22 +29,7 @@ public class ShowtimeButton extends JButton {
         this.available = capacity;
     }
 
-    public void insert(ShowtimeButton btn) {
-        buttons.add(btn);
-    }
 
-    public ArrayList<ShowtimeButton> getList() {
-        return buttons;
-    }
-
-    public String toString() {
-        String str = "";
-        for (ShowtimeButton s : buttons) {
-            str += s.getShowtime() + ",";
-        }
-
-        return str;
-    }
 
     public void setDisabled() {
         this.setEnabled(false);

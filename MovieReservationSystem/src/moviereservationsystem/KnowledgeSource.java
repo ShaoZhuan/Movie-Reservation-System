@@ -13,7 +13,7 @@ import java.util.List;
 public interface KnowledgeSource {
     
     // generate movie and return movie object
-    public List<Movie> MovieInformation();
+    public Movie MovieInformation();
     
     //provides ticket reservation services to anonymous customers. 
     public void reserveTicketAnonymous();
@@ -21,8 +21,6 @@ public interface KnowledgeSource {
     //provide member reservation
     public void reserveTicketMember();
     
-    //show movie guide
-    public void showMovie(List<Movie> movieList);
     
     //close reservation
     public void closeReserve();

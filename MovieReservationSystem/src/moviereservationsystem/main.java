@@ -18,7 +18,7 @@ public class main{
 
     public static void main(String[] args) {
         movieList = new ArrayList<>();
-        Controller controller = new Controller(movieList);
+        Controller controller = new Controller();
         Timer timer = new Timer();
         Thread t1 = new Thread(controller);
         t1.start();
