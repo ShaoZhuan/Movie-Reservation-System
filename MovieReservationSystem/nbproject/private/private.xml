@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/GUI/GUI.java</file>
             <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/MainGUI.java</file>
             <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/GUI/ShowtimeButton.java</file>
@@ -11,6 +12,16 @@
             <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/GUI/testStatic.java</file>
             <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Controller.java</file>
             <file>file:/Users/leequan/Documents/Java/Movie-Reservation-System/MovieReservationSystem/movies.sql</file>
+=======
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/MovieReservationSystem.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/main.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Blackboard.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Action.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Controller.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Movie.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/Timer.java</file>
+            <file>file:/Users/hng/Documents/UM/Third%20Year/sem%202/Software%20Architecture%20and%20Design/Group%20project/Movie-Reservation-System/MovieReservationSystem/src/moviereservationsystem/KnowledgeSource.java</file>
+>>>>>>> f4e91381968b29a6b7f09b068fbec0d78e86e743
         </group>
     </open-files>
 </project-private>

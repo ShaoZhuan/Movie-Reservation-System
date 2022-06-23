@@ -21,31 +21,36 @@ public class Blackboard {
     
     //special method for supporting the updating process carried out by knowledge sources
     public void update(List<Movie> list){
+        
         // sort the list according to duration
         List<Movie> oriList = new ArrayList<>(list);
-        List<Movie> newlist = new ArrayList<>();        
-        while(true){
-            int min= Integer.MAX_VALUE;
-            Movie temp = null;
-            for (Movie movie : oriList) {                
-                if(min>movie.getStartTime()){
-                    min = movie.getStartTime();
-                    temp = movie;
-                }
+        
+        for(Movie movie: oriList){
+            ShowTime temp=null;
+            List<ShowTime> showTime = new ArrayList<>();
+            while(true){
+                int min = Integer.MAX_VALUE;
+                for (ShowTime st: movie.getShowTime()) {
+                    if(min>st.getShowTime()){
+                        min = st.getShowTime();
+                        temp = st;
+                    }
+                }                
+                movie.getShowTime().remove(temp);
+                showTime.add(temp);
+                if(movie.getShowTime().isEmpty())
+                    break;
             }
-            oriList.remove(temp);
-            newlist.add(temp);
-            if(oriList.isEmpty())
-                break;
+            movie.setShowTime(showTime);
         }
         if(list.isEmpty()){
-            action.showMovie(list);
+            action.showMovie(oriList);
+            action.closeMovie();
         }
         else{
             //trigger showMovie method
-            action.showMovie(newlist);            
-        }
-        
+            action.showMovie(oriList);            
+        }       
         
         
     }

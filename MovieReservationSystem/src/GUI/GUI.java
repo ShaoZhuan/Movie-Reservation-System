@@ -5,6 +5,8 @@
 package GUI;
 
 import database.DBConnection;
+import moviereservationsystem.Controller;
+
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +23,6 @@ import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 public class GUI extends JFrame {
 
     private static JFrame f = new JFrame("Movie Reservation System");
@@ -106,6 +107,7 @@ public class GUI extends JFrame {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
 
             public void run() {
+//                Controller controller = new Controller();
                 try {
                     new GUI();
 //                    buttons.get(4).setDisabled();

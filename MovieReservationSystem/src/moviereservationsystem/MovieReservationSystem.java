@@ -4,6 +4,7 @@
  */
 package moviereservationsystem;
 
+import com.sun.tools.javac.Main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
 public class MovieReservationSystem extends Application {
     
     @Override
-    public void start(Stage primaryStage) {        
+    public void start(Stage primaryStage) {            
         Button btn = new Button();
         Text titleText = new Text();        
         btn.setText("Say 'Hello World'");
@@ -47,8 +48,8 @@ public class MovieReservationSystem extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
-        launch(args);
+    public static void main(String[] args) {            
+        launch(args);        
     }
     
 }
