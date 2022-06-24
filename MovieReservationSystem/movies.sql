@@ -34,12 +34,15 @@ INSERT INTO `movie`.`movie` (title, info, duration, image)  VALUES ('Jujutsu Kai
 
 
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '9.00', 50 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '9.45', 50 );
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '10.00', 35 );
-INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '17.00', 40 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '10.20', 35 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '17.30', 40 );
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (1, '20.00', 30 );
 
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '9.00', 40 );
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '11.00', 40 );
+INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '11.45', 40 );
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '14.00', 50 );
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '15.00', 30 );
 INSERT INTO `movie`.`showtime` (movie_id, showtime, capacity)  VALUES (2, '16.00', 40 );

@@ -18,7 +18,6 @@ public interface KnowledgeSource {
     //provides ticket reservation services to anonymous customers. 
     public void reserveTicket(ShowtimeButton button);
     
-    
     //close reservation
     public void closeReserve(ShowtimeButton button);
     
