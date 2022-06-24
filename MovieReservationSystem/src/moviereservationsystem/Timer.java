@@ -18,10 +18,10 @@ public class Timer implements Runnable {
 
     public void increment() {
         time = Double.parseDouble(df.format(time));
-        if (df.format(time % 1.0).equals("0.55")) {
-            time = time - 0.55 + 1.0;
+        if (df.format(time % 1.0).equals("0.5")) {
+            time = time - 0.50 + 1.0;
         } else {
-            time += 0.05;
+            time += 0.10;
         }
         updated = true;
     }

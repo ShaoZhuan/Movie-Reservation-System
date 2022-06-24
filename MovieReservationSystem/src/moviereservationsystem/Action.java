@@ -108,7 +108,7 @@ public class Action implements KnowledgeSource {
 
     @Override
     public void closeMovie() {
-        PopupWindow endWindow = new PopupWindow("All movies have finished show. Please come at next day.");
+        PopupWindow endWindow = new PopupWindow("Cinema is closed now. Please come again tomorrow!");
         endWindow.end = true;
     }
 }
