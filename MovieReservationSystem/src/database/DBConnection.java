@@ -21,20 +21,5 @@ public class DBConnection {
         return stmt.executeQuery(sql);
     }
 
-    public void insert(String table) throws SQLException {
-        String sql = "INSERT INTO " + table + " ";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.execute();
-    }
-
-    public void truncate(String sql) throws SQLException {
-        Statement stmt = conn.createStatement();
-        stmt.executeUpdate(sql);
-    }
-
-    public void update(String sql) throws SQLException {
-        Statement stmt = conn.createStatement();
-        stmt.executeUpdate(sql);
-    }
 
 }

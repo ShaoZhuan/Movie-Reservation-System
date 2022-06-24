@@ -36,7 +36,7 @@ public class Controller implements Runnable {
             startBlackboard();
             // use thread monitoring blackboard state
             // check the closing time
-            while (timer.getTime() < 22.00) {
+            while (timer.getTime() < 22.10) {
                 double time = timer.getTime();
                 bb.setTime(time);
                 // check time for disable button

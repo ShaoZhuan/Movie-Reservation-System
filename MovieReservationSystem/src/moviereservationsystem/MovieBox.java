@@ -35,18 +35,7 @@ public class MovieBox extends JFrame{
     
     //contstructor for initialise and assignment of variable 
     public MovieBox(Movie movie ,ShowtimeButton button,Action action){
-        
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        imagePanel = new javax.swing.JLabel();
-        movieTitle = new javax.swing.JLabel();
-        movieDescription = new javax.swing.JLabel();
-        reserveButton = new javax.swing.JButton();
         title = new javax.swing.JLabel();
-        closeButton = new javax.swing.JButton();
-        seatNum = new javax.swing.JLabel();
-        seat = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
         description = new javax.swing.JTextArea();
         
         this.action = action;
@@ -67,7 +56,19 @@ public class MovieBox extends JFrame{
     // display the movie information window
     public void display() throws MalformedURLException, IOException{
         
-
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        imagePanel = new javax.swing.JLabel();
+        movieTitle = new javax.swing.JLabel();
+        movieDescription = new javax.swing.JLabel();
+        reserveButton = new javax.swing.JButton();
+        
+        closeButton = new javax.swing.JButton();
+        seatNum = new javax.swing.JLabel();
+        seat = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        
+        
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
