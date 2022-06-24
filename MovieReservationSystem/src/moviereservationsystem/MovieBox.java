@@ -183,10 +183,11 @@ public class MovieBox extends JFrame{
         
     }
     
-    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {   
+        reserveButton.setEnabled(false);
         action.reserveTicket(button);        
         seat.setText(Integer.toString(button.getAvailable()));
-
+        
         
     }  
 

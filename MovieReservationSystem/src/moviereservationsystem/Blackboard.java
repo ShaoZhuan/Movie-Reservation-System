@@ -62,7 +62,7 @@ public class Blackboard extends JFrame {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 0;       //reset to default
         c.anchor = GridBagConstraints.PAGE_END;
-        c.insets = new Insets(0, 0, 0, 0);
+        c.insets = new Insets(1, 0, 0, 0);
         c.gridx = 1;       
         c.gridwidth = 3;   
         c.gridy = 0;       

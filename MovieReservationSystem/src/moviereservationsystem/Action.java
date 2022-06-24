@@ -109,7 +109,6 @@ public class Action implements KnowledgeSource {
 
     @Override
     public void closeReserve(ShowtimeButton button) {
-        // disable button or remove the button from the blackboard
         button.setDisabled();    
     }
 
