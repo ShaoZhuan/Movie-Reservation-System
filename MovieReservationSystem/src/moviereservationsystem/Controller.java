@@ -1,76 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package moviereservationsystem;
 
+import GUI.ShowtimeButton;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author hng
- */
 public class Controller implements Runnable {
 
-    private Action action;
-    private List<Movie> movieList;
+    private static Action action;
+    private static List<Movie> movieList;
     private static Blackboard bb;
     private Timer timer;
-    private boolean update = true;
+    private List<ShowtimeButton> buttons;
 
-    public Controller(List<Movie> movieList) {
-
+    public Controller() {
+        this.buttons = new ArrayList<>();
         movieList = new ArrayList<>();
         action = new Action(movieList);
-        bb = new Blackboard(action);
+
         timer = new Timer();
+    }
+
+    public void startBlackboard() throws SQLException, IOException {
+        bb = new Blackboard(action, movieList);
+        bb.update(movieList, buttons);
     }
 
     @Override
     public void run() {
-        List<ShowTime> removeList;
-        List<Movie> removeMVlist;
-        // use thread monitoring blackboard state
-        movieList = action.MovieInformation();
-        // check the closing time        
-        while (!timer.timeReach()) {
-            removeList = new ArrayList<>();
-            removeMVlist = new ArrayList<>();
-            double time = timer.getTime();
-            // sleep for 1 seconds and wake up to check loop
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //check for close reservation
-            for (Movie movie : movieList) {
-                for (ShowTime showTime : movie.getShowTime()) {
-                    if ((showTime.getShowTime() - time) <= 1.0 && (showTime.getShowTime() - time) >= 0) {
-                        //disable button
-                        removeList.add(showTime);
-                        update = true;
+        try {
+            startBlackboard();
+            // use thread monitoring blackboard state
+            // check the closing time
+            while (timer.getTime() < 22.00) {
+                double time = timer.getTime();
+                bb.setTime(time);
+                // sleep for 1 seconds and wake up to check loop
+                try {
+                    for (int i = 0; i < buttons.size(); i++) {
+                        if (Double.parseDouble(buttons.get(i).getShowtime()) - time <= 1.0) {
+                            action.closeReserve(buttons.get(i));
+                            buttons.remove(buttons.get(i));
+                        }
                     }
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (!removeList.isEmpty()) {
-                    movie.getShowTime().removeAll(removeList);
-                    if (movie.getShowTime().isEmpty()) {
-                        removeMVlist.add(movie);
-                    }
-                }
-            }
-            if (!removeList.isEmpty()) {
-                movieList.removeAll(removeMVlist);
-            }
-            if (update) {
-                bb.update(movieList);
-                update = false;
-            }
+                //compare button with time
 
+            }
+            action.closeMovie();
+
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
 
+}

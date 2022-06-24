@@ -1,100 +1,114 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package moviereservationsystem;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
+import GUI.ShowtimeButton;
+import database.DBConnection;
+import java.io.IOException;
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
-/**
- *
- * @author hng
- */
 public class Action implements KnowledgeSource {
     
-    private List<Movie> movieList;
-    
-    public Action(List<Movie> movieList){        
+    private List<Movie> movieList;    
+    DBConnection db;
+    MovieBox mb;
+    public Action(List<Movie> movieList){
+        
+        try {
+            this.db = new DBConnection();            
+        } catch (SQLException ex) {
+            Logger.getLogger(Action.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.movieList = movieList;
     }
+    
+
+    public void loadData(List<Movie> movieList) throws SQLException{
+        try (ResultSet movies = db.retrieve("SELECT * FROM movie")) {
+            while (movies.next()) {
+                //assign the data into list
+                int id  = movies.getInt("_id");
+                String title = movies.getString(2);
+                String info = movies.getString(3);
+                int duration  = movies.getInt("duration");
+                String url= movies.getString(5);
+                movieList.add(new Movie(id,title,info,duration,url));
+            }
+        }
+        
+        
+        
+    }
+    
+    public void addButton(JPanel panel, int _id, List<ShowtimeButton> buttons) throws SQLException {
+        ResultSet showtimes = db.retrieve("SELECT * FROM showtime WHERE movie_id=" + _id);            
+        while (showtimes.next()) {
+            ShowtimeButton button = new ShowtimeButton(showtimes.getInt(1), showtimes.getInt(2), showtimes.getString(3), showtimes.getInt(4));
+            button.addActionListener(e-> {
+                // start the reservation things
+                mb = new MovieBox(MovieInformation(button.getMovieId()),button,this);
+                try {
+                    mb.display();
+                } catch (IOException ex) {
+                    Logger.getLogger(Action.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            buttons.add(button);            
+            panel.add(button);
+        }
+        panel.revalidate();
+        panel.repaint();
+    }
+
 
     
     @Override
-    public List<Movie> MovieInformation() {
-        File file = new File("movies.txt");
-        try {
-            Scanner sc = new Scanner(file);
-            while(sc.hasNextLine()){
-                String[] str = sc.nextLine().split(",");      
-                String name = str[0];
-                String[] showTime = str[1].split("\\|");               
-                int duration = Integer.parseInt(str[2]);
-                String description = str[3];
-                String url = str[4];
-                
-                // name, description, duration, showtime, imageurl
-                Movie movie = new Movie(name, description, duration, Arrays.asList(showTime),url);
-                // after done creating movie blackboard update and display the movie
-                movieList.add(movie);               
+
+    public Movie MovieInformation(int id) {
+        // return movie information
+        for (Movie movie:movieList) {
+            if(movie.getId()==id){
+                return movie;
             }
-            sc.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MovieReservationSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return movieList;
+        return null;
+
     }
 
     @Override
-    public void reserveTicket() {
-        
-    }
-
-
-
-    @Override
-    public void showMovie(List<Movie> movieList) {
-        // print the movie list and time table
-        for (Movie mv: movieList) {
-            System.out.println(mv.toString());
-        }        
-                
-        System.out.println("\nTime table of all movie show times: ");
-        // row is time, column is movielist
-        //time only from 8am to 10pm with every half hour of display
-        double time = 8.00;
-        System.out.println("Time:  | Movie");
-        for (int i = 0; i < 15; i++) {    
-            //print time
-            System.out.printf("%-7.2f| ",time);
-            if(!movieList.isEmpty()){
-                for (Movie list: movieList) {
-                    for (ShowTime showtime: list.getShowTime()) {
-                        if(showtime.getShowTime()==(int)time)
-                            System.out.printf("%-10s ",list.getName());
-                        
-                    }
-                }
+    public void reserveTicket(ShowtimeButton button) {
+        if(button.isEnabled()){
+            if(button.isFull()){
+               //popout error message 
+               PopupWindow error = new PopupWindow("Sorry the capacity is full. Please choose for another slot");           
             }
-            System.out.println();
-            time+=1;                            
+            else{
+                button.reserve();
+                // popout reserve successfully
+                PopupWindow success = new PopupWindow("Reserve Successfully!");                 
+            }            
         }
-        System.out.println();
+        else{
+            PopupWindow expired = new PopupWindow("The time for reservation is passed. Please try next slot.");
+            mb.setVisible(false);
+        }
     }
 
+  
+
     @Override
-    public void closeReserve() {
-        // disable button or remove the button from the blackboard
+    public void closeReserve(ShowtimeButton button) {
+        button.setDisabled();    
     }
 
     @Override
     public void closeMovie() {
-        System.out.println("All movies have finished show. Please come at next day.");
-        System.exit(0);
+        PopupWindow endWindow = new PopupWindow("All movies have finished show. Please come at next day.");
+        endWindow.end = true;
     }
 }

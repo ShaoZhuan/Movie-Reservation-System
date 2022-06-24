@@ -1,29 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package moviereservationsystem;
 
-import java.util.List;
+import GUI.ShowtimeButton;
 
-/**
- *
- * @author hng
- */
 public interface KnowledgeSource {
-    
+
     // generate movie and return movie object
-    public List<Movie> MovieInformation();
-    
+    public Movie MovieInformation(int id);
+
     //provides ticket reservation services to anonymous customers. 
-    public void reserveTicket();
-    
-    //show movie guide
-    public void showMovie(List<Movie> movieList);
-    
+    public void reserveTicket(ShowtimeButton button);
+
     //close reservation
-    public void closeReserve();
-    
+    public void closeReserve(ShowtimeButton button);
+
     //close movie show 
     public void closeMovie();
 }
