@@ -15,9 +15,11 @@ public class Timer implements Runnable {
 
         updated = true;
     }
-
+    
+    // increase the time by 10 minutes
     public void increment() {
         time = Double.parseDouble(df.format(time));
+
         if (df.format(time % 1.0).equals("0.5")) {
             time = time - 0.50 + 1.0;
         } else {
@@ -25,16 +27,17 @@ public class Timer implements Runnable {
         }
         updated = true;
     }
-
+    
     public double getTime() {
         return time;
     }
-
+    
+    // start the timer
     public void run() {
         while (time != 23.00) {
             try {
                 updated = false;
-                // sleep for around 10s then wake up update time
+                // sleep for around 0.5s then wake up update time
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Timer.class.getName()).log(Level.SEVERE, null, ex);

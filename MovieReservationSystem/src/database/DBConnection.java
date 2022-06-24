@@ -13,7 +13,7 @@ public class DBConnection {
     
     //Connect to the database.
     public DBConnection() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?serverTimezone=UTC", "root", "");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/movie?serverTimezone=UTC", "root", "hng.2000");
     }
 
     public ResultSet retrieve(String sql) throws SQLException {

@@ -15,14 +15,16 @@ public class PopupWindow extends JFrame {
 
     private String text;
     public boolean end = false;
-
+    
+    //contstructor for initialise and assignment of variable
     public PopupWindow(String text) {
         this.text = text;
         this.setVisible(true);
 
         popUp();
     }
-
+    
+    // display the pop up window with given text
     public void popUp() {
         JPanel container = new JPanel(new GridBagLayout());
         successMsg = new javax.swing.JLabel();

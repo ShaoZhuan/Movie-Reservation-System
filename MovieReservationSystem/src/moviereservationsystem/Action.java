@@ -27,7 +27,7 @@ public class Action implements KnowledgeSource {
         this.movieList = movieList;
     }
     
-
+    // load the movie data from the database
     public void loadData(List<Movie> movieList) throws SQLException{
         try (ResultSet movies = db.retrieve("SELECT * FROM movie")) {
             while (movies.next()) {
@@ -45,12 +45,13 @@ public class Action implements KnowledgeSource {
         
     }
     
+    // add a showtime button into a button list
     public void addButton(JPanel panel, int _id, List<ShowtimeButton> buttons) throws SQLException {
         ResultSet showtimes = db.retrieve("SELECT * FROM showtime WHERE movie_id=" + _id);            
         while (showtimes.next()) {
             ShowtimeButton button = new ShowtimeButton(showtimes.getInt(1), showtimes.getInt(2), showtimes.getString(3), showtimes.getInt(4));
             button.addActionListener(e-> {
-                // start the reservation things
+                // display the movie information
                 mb = new MovieBox(MovieInformation(button.getMovieId()),button,this);
                 try {
                     mb.display();
@@ -66,9 +67,8 @@ public class Action implements KnowledgeSource {
     }
 
 
-    
+    // override the movieinformation from the knowledge source
     @Override
-
     public Movie MovieInformation(int id) {
         // return movie information
         for (Movie movie:movieList) {
@@ -79,7 +79,8 @@ public class Action implements KnowledgeSource {
         return null;
 
     }
-
+    
+    // override the reserveTicket from the knowledge source
     @Override
     public void reserveTicket(ShowtimeButton button) {
         if(button.isEnabled()){
@@ -100,12 +101,13 @@ public class Action implements KnowledgeSource {
     }
 
   
-
+    // override the closeReserve from the knowledge source
     @Override
     public void closeReserve(ShowtimeButton button) {
         button.setDisabled();    
     }
 
+    // override the closeMovie from the knowledge source
     @Override
     public void closeMovie() {
         PopupWindow endWindow = new PopupWindow("Cinema is closed now. Please come again tomorrow!");

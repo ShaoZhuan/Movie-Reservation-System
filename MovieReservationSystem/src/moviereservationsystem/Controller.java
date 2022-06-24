@@ -23,7 +23,8 @@ public class Controller implements Runnable {
 
         timer = new Timer();
     }
-
+    
+    // start the blackboard
     public void startBlackboard() throws SQLException, IOException {
         bb = new Blackboard(action, movieList);
         bb.update(movieList, buttons);
@@ -38,7 +39,7 @@ public class Controller implements Runnable {
             while (timer.getTime() < 22.00) {
                 double time = timer.getTime();
                 bb.setTime(time);
-                // sleep for 1 seconds and wake up to check loop
+                // check time for disable button
                 try {
                     for (int i = 0; i < buttons.size(); i++) {
                         if (Double.parseDouble(buttons.get(i).getShowtime()) - time <= 1.0) {

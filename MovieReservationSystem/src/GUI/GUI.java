@@ -5,7 +5,8 @@ import moviereservationsystem.Controller;
 
 
 public class GUI extends JFrame {
-
+    
+    // main class starts controller and timer with 2 threads
     public static void main(String args[]) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             Controller controller = new Controller();

@@ -7,7 +7,7 @@ public interface KnowledgeSource {
     // generate movie and return movie object
     public Movie MovieInformation(int id);
 
-    //provides ticket reservation services to anonymous customers. 
+    //provides ticket reservation services to customers. 
     public void reserveTicket(ShowtimeButton button);
 
     //close reservation

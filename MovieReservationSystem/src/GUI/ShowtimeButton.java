@@ -11,7 +11,8 @@ public class ShowtimeButton extends JButton {
 
     public ShowtimeButton() {
     }
-
+    
+    //show time button constructor store the button with its own infomation
     public ShowtimeButton(int showtimeId, int movieId, String showtime, int capacity) {
         super(showtime);
         this.showtimeId = showtimeId;

@@ -46,9 +46,8 @@ public class Blackboard extends JFrame {
         action.loadData(movieList);
     }
 
-    //special method for supporting the updating process carried out by knowledge sources
-    public void update(List<Movie> list, List<ShowtimeButton> buttons) throws MalformedURLException, IOException, SQLException {
-        // sort the list according to duration
+    // display the timetable in GUI
+    public void update(List<Movie> list, List<ShowtimeButton> buttons) throws MalformedURLException, IOException, SQLException {        
         JPanel container = new JPanel();
         JPanel timecontainer = new JPanel();
         container.setLayout(new GridBagLayout());

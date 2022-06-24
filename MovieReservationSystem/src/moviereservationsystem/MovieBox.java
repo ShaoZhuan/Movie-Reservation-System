@@ -29,10 +29,11 @@ public class MovieBox extends JFrame{
     private javax.swing.JLabel title;
     
     private ShowtimeButton button;
-    private Movie movie;
-    private String showTime;
+    private Movie movie;    
     private Action action;
-    // End of variables declaration     
+    // End of variables declaration  
+    
+    //contstructor for initialise and assignment of variable 
     public MovieBox(Movie movie ,ShowtimeButton button,Action action){
         
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,6 +56,7 @@ public class MovieBox extends JFrame{
         setDetails();
     }
     
+    // set the information from movie object
     public void setDetails(){
         title.setText(movie.getName());
         description.setText(movie.getDescription());
@@ -62,6 +64,7 @@ public class MovieBox extends JFrame{
         this.setTitle("Movie: "+movie.getName());
     }
     
+    // display the movie information window
     public void display() throws MalformedURLException, IOException{
         
 

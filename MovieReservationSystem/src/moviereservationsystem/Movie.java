@@ -12,6 +12,7 @@ public class Movie {
 
     private String imageURL;
     
+    // movie constructor store the movie object
     public Movie(int id, String name, String description, int duration, String imageURL) {
         this.id = id;
         this.name = name;
@@ -40,16 +41,7 @@ public class Movie {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-    
-//    public String displayShowTime(){
-//        String str="[";
-//        for (ShowTime showTime : this.showTime) {
-//            str += showTime.getShowTime() + ",";
-//        }
-//        str+="]";
-//        return str;
-//    }
+    }    
 
     public String getName() {
         return name;
